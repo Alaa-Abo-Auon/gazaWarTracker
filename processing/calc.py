@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load the Excel file
-df = pd.read_excel("data/Book1.xlsx")
+df = pd.read_excel("C:/Users/alaah/RiderProjects/Solution1/company-profile/gazaWarTracker/data/Book1.xlsx")
 
 
 def total_martyr_count():
@@ -47,8 +47,8 @@ def most_damaged_region():
             region_damaged_homes_count[region[i]] += damaged_homes_count[i]
     # then conclude that the one with the lowest
     # count is the most damaged and is most likely dangerous to live in.
-        lowest_damaged_region = max(region_damaged_homes_count, key=region_damaged_homes_count.get)
-        return lowest_damaged_region
+        highest_damaged_region = max(region_damaged_homes_count, key=region_damaged_homes_count.get)
+        return highest_damaged_region
     else:
         print(f"Column '{target_column_name_1}' or '{target_column_name_2}' not found.")
         return None
@@ -73,9 +73,47 @@ def least_damaged_region():
             return None
 
 
-# def most_victim_dates():
-#     #Add all the martyr and injured count on a
-#     # specific date.
+def highest_victims_dates():
+    taget_column_name = "Date"
+    if taget_column_name in df.columns:
+        #Add all the martyr and injured count on a
+        # specific date.
+        dates = df["Date"].unique()
+        date_victims_count = dict.fromkeys(dates, 0)
+        date = df["Date"]
+        martyr_count = df["Martyr Count"]
+        injured_count = df["Injured Count"]
+        #Add all the martyr and injured count on a
+        # specific date.
+        for i in range(date.count()):
+            date_victims_count[date[i]] += martyr_count[i] + injured_count[i]
+        highest_victims_date = max (date_victims_count, key=date_victims_count.get)
+        
+        return highest_victims_date
+    else:
+        print(f"column '{taget_column_name}' not found.")
+        return None
+
+def lowest_victims_dates():
+    taget_column_name = "Date"
+    if taget_column_name in df.columns:
+        #Add all the martyr and injured count on a
+        # specific date.
+        dates = df["Date"].unique()
+        date_victims_count = dict.fromkeys(dates, 0)
+        date = df["Date"]
+        martyr_count = df["Martyr Count"]
+        injured_count = df["Injured Count"]
+        #Add all the martyr and injured count on a
+        # specific date.
+        for i in range(date.count()):
+            date_victims_count[date[i]] += martyr_count[i] + injured_count[i]
+        lowest_victims_date = min (date_victims_count, key=date_victims_count.get)
+        
+        return lowest_victims_date
+    else:
+        print(f"column '{taget_column_name}' not found.")
+        return None
 
 def attack_type_count():
 #     #Sum attacks of each type.
