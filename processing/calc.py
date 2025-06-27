@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load the Excel file
-df = pd.read_excel("C:/Users/alaah/RiderProjects/Solution1/company-profile/gazaWarTracker/data/Book1.xlsx")
+df = pd.read_excel("data/Book1.xlsx")
 
 
 def total_martyr_count():
